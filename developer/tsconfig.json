@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "moduleResolution": "classic",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "jsx": "react",
+    "jsxFactory": "tsx",
+    "target": "es5",
+    "experimentalDecorators": true,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [ "arcgis-js-api" ],
+    "rootDir": "app",
+    "outDir": "dist",
+    "noImplicitUseStrict":true
+  },
+  "files": [
+    "node_modules/dojo-typings/dojo/1.11/index.d.ts",
+    "node_modules/dojo-typings/dojo/1.11/modules.d.ts",
+    "node_modules/dojo-typings/dijit/1.11/index.d.ts",
+    "node_modules/dojo-typings/dijit/1.11/modules.d.ts"
+  ],
+  "include": [
+    "app/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

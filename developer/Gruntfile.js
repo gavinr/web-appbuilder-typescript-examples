@@ -1,0 +1,84 @@
+module.exports = function(grunt) {
+  'use strict';
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-zip');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-ts');
+
+  var configObject = {
+    watch: {
+      'main': {
+        'files': ['app/**'],
+        'tasks': [
+          'copy:main',
+          'ts'
+        ],
+        'options': {
+          'spawn': false,
+          'atBegin': true,
+          'livereload': true
+        }
+      }
+    },
+    ts: {
+      default: {
+        tsconfig: {
+          passThrough: true
+        }
+      }
+    },
+    copy: {
+      'main': {
+        'cwd': 'app/',
+        'src': [
+          '**/**.html',
+          '**/**.json',
+          '**/**.css',
+          '**/images/**',
+          '**/nls/**',
+          '**/lib/**',
+          '**/*.js',
+          '*.js'
+
+        ],
+        'dest': 'dist/',
+        'expand': true
+      },
+      'zip': {
+        cwd: 'temp/WebAppBuilderForArcGIS/client/stemapp',
+        src: '**/*.*',
+        dest: 'dist/',
+        expand: true
+      }
+    },
+    clean: {
+      'dist': {
+        'src': 'dist/**'
+      },
+      temp: {
+        'src': 'temp/**'
+      }
+    },
+    unzip: {
+      'temp/': 'arcgis-web-appbuilder-2.4.zip'
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: 'dist',
+          open: true,
+          protocol: 'https'
+        }
+      }
+    }
+  };
+
+  grunt.initConfig(configObject);
+  grunt.registerTask('init', ['clean:temp', 'unzip', 'copy:zip', 'clean:temp']);
+  grunt.registerTask('build', ['copy:main', 'ts']);
+  grunt.registerTask('serve', ['build', 'connect', 'watch']);
+  grunt.registerTask('default', ['serve']);
+};

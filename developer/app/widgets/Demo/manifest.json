@@ -1,0 +1,25 @@
+{
+  "name": "Demo",
+  "2D": true,
+  "3D": false,
+  "platform": "HTML",
+  "version": "1.0",
+  "wabVersion": "2.4",
+  "author": "Gavin Rehkemper",
+  "description": "Demo widget for TS.",
+  "copyright": "",
+  "license": "",
+  "properties": {
+    "supportMultiInstance": true,
+    "inPanel": true,
+    "hasLocale": true,
+    "hasStyle": false,
+    "hasConfig": true,
+    "hasUIFile": true,
+    "hasSettingPage": false,
+    "hasSettingUIFile": false,
+    "hasSettingLocale": false,
+    "hasSettingStyle": false,
+    "IsController": false
+  }
+}
