@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-zip');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-ts');
+  grunt.loadNpmTasks('grunt-text-replace');
 
   var configObject = {
     watch: {
@@ -13,7 +14,8 @@ module.exports = function(grunt) {
         'files': ['app/**'],
         'tasks': [
           'copy:main',
-          'ts'
+          'ts',
+          'replace'
         ],
         'options': {
           'spawn': false,
@@ -29,6 +31,16 @@ module.exports = function(grunt) {
         }
       }
     },
+    replace: {
+      default: {
+        src: ['dist/**/*.js.map'],
+        overwrite: true,
+        replacements: [{
+          from: /..\/..\/..\/app\/widgets\/Demo\//g,
+          to: ""
+        }]
+      }
+    },
     copy: {
       'main': {
         'cwd': 'app/',
@@ -39,6 +51,8 @@ module.exports = function(grunt) {
           '**/images/**',
           '**/nls/**',
           '**/lib/**',
+          '**/*.ts',
+          '*.ts',
           '**/*.js',
           '*.js'
 
@@ -78,7 +92,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig(configObject);
   grunt.registerTask('init', ['clean:temp', 'unzip', 'copy:zip', 'clean:temp']);
-  grunt.registerTask('build', ['copy:main', 'ts']);
+  grunt.registerTask('build', ['copy:main', 'ts', 'replace']);
   grunt.registerTask('serve', ['build', 'connect', 'watch']);
   grunt.registerTask('default', ['serve']);
 };
