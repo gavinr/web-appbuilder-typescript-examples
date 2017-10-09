@@ -1,10 +1,10 @@
 {
   "name": "Demo",
-  "2D": true,
-  "3D": false,
+  "2D": false,
+  "3D": true,
   "platform": "HTML",
   "version": "1.0",
-  "wabVersion": "2.4",
+  "wabVersion": "2.5",
   "author": "Gavin Rehkemper",
   "description": "Demo widget for TS.",
   "copyright": "",

@@ -3,8 +3,8 @@ Featuring examples of using TypeScript with Web AppBuilder
 
 ## Examples
 
+1. `developer` - if you're not using the builder interface, this version extracts Web AppBuilder, copies the config files for your app, builds your widgets, and hosts the files.
 1. `builder` - example using TypeScript and Grunt to copy files to your local Web AppBuilder Developer Edition so you can use your custom widgets in the builder interface. (COMING SOON)
-2. `developer` - if you're not using the builder interface, this version extracts Web AppBuilder, copies the config files for your app, builds your widgets, and hosts the files.
 
 ## Quick Start - `builder`
 

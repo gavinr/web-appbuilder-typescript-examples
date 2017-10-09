@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         'expand': true
       },
       'zip': {
-        cwd: 'temp/WebAppBuilderForArcGIS/client/stemapp',
+        cwd: 'temp/WebAppBuilderForArcGIS/client/stemapp3d',
         src: '**/*.*',
         dest: 'dist/',
         expand: true
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
       }
     },
     unzip: {
-      'temp/': 'arcgis-web-appbuilder-2.4.zip'
+      'temp/': 'arcgis-web-appbuilder-2.5.zip'
     },
     connect: {
       server: {
