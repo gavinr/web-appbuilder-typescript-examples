@@ -156,6 +156,10 @@
       {
         "uri": "widgets/Slides/Widget",
         "version": "2.5"
+      },
+      {
+        "uri": "widgets/Demo/Widget",
+        "version": "1.0"
       }
     ]
   },
