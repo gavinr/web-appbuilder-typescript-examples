@@ -18,7 +18,7 @@
       "useLogo": false
     }
   },
-  "portalUrl": "http://ps-dbs.maps.arcgis.com",
+  "portalUrl": "http://maps.arcgis.com",
   "appId": "",
   "authorizedCrossOriginDomains": [],
   "title": "Demo App",
