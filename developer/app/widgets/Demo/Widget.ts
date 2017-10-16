@@ -2,6 +2,8 @@
 declare var BaseWidget: any;
 // additional jimu imports (using the 2 lines of syntax above) go here.
 
+import declare from "./support/declareDecorator";
+
 import FeatureLayer = require('esri/layers/FeatureLayer');
 import Query = require('esri/tasks/support/Query');
 import SceneView = require('esri/views/SceneView');
@@ -12,16 +14,24 @@ import * as on from 'dojo/on';
 // import * as Query from 'esri/tasks/support/Query';
 // additional normal modules (dojo, local, etc) go here
 
-export = dojoDeclare([BaseWidget], {
-  baseClass: 'demo-widget',
+interface Config {
+  demoSetting: string
+}
+interface Widget {
+  widgetWrapper?: Element
+  config?: Config
+}
+@declare(BaseWidget)
+class Widget {
+  baseClass: 'demo-widget';
 
-  sceneView: SceneView,
+  sceneView: SceneView;
 
   postCreate() {
-    this.inherited(arguments);
+    // this.inherited(arguments);
     this.widgetWrapper.innerHTML = this.config.demoSetting;
     this.createLayer();
-  },
+  };
 
   /**
    * Example of adding a layer to the map, and querying the features.
@@ -34,8 +44,8 @@ export = dojoDeclare([BaseWidget], {
       this.queryLayer(layer);
     });
     // const sceneView:SceneView  = this.sceneView;
-    this.sceneView.map.layers.add(5);
-  },
+    this.sceneView.map.layers.add(layer);
+  };
 
   queryLayer(layer: FeatureLayer) {
     const query = new Query();
@@ -46,4 +56,4 @@ export = dojoDeclare([BaseWidget], {
       console.log('query results:', results.features);
     });
   }
-});
+};
