@@ -1,18 +1,18 @@
-/// <amd-dependency path="jimu/BaseWidget" name="BaseWidget" />
-declare var BaseWidget: any;
-// additional jimu imports (using the 2 lines of syntax above) go here.
+// JIMU (WAB) imports:
 
+/// <amd-dependency path="jimu/BaseWidget" name="BaseWidget" />
+declare var BaseWidget: any; // there is no ts definition of BaseWidget (yet!)
+
+// DeclareDecorator - to enable us to export this module with Dojo's "declare()" syntax so WAB can load it:
 import declare from "./support/declareDecorator";
 
+// Esri imports:
 import FeatureLayer = require('esri/layers/FeatureLayer');
 import Query = require('esri/tasks/support/Query');
 import SceneView = require('esri/views/SceneView');
-// additional esri imports (using require syntax like the above line) go here.
 
-import * as dojoDeclare from 'dojo/_base/declare';
-import * as on from 'dojo/on';
-// import * as Query from 'esri/tasks/support/Query';
-// additional normal modules (dojo, local, etc) go here
+// Dojo imports:
+// import * as on from 'dojo/on';
 
 interface Config {
   demoSetting: string
@@ -21,14 +21,16 @@ interface Widget {
   widgetWrapper?: Element
   config?: Config
 }
+
 @declare(BaseWidget)
 class Widget {
   baseClass: 'demo-widget';
 
   sceneView: SceneView;
 
-  postCreate() {
-    // this.inherited(arguments);
+  postCreate(args: any) {
+    // not allowed in option strict this.inherited(arguments);
+    BaseWidget.prototype.postCreate.call(this, args);
     this.widgetWrapper.innerHTML = this.config.demoSetting;
     this.createLayer();
   };
@@ -43,7 +45,6 @@ class Widget {
     layer.then((evt) => {
       this.queryLayer(layer);
     });
-    // const sceneView:SceneView  = this.sceneView;
     this.sceneView.map.layers.add(layer);
   };
 
@@ -51,9 +52,10 @@ class Widget {
     const query = new Query();
     query.where = 'facility = 7';
     query.outFields = ['*'];
-    console.log('here0', layer, query);
     layer.queryFeatures(query).then((results) => {
       console.log('query results:', results.features);
     });
   }
 };
+
+export = Widget;
