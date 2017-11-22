@@ -1,0 +1,24 @@
+{
+  "name": "ts-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-sync": "^0.6.2",
+    "grunt-ts": "^6.0.0-beta.16",
+    "dojo-typings": "^1.11.7",
+    "@types/arcgis-js-api": "^4.5.0",
+    "@types/es6-promise": "0.0.32",
+    "typescript": "^2.5.3"
+  }
+}
