@@ -48,6 +48,7 @@ module.exports = function(grunt) {
           '**/**.html',
           '**/**.json',
           '**/**.css',
+          '**/**.ts',
           '**/images/**',
           '**/nls/**',
           '**/lib/**',
@@ -76,7 +77,7 @@ module.exports = function(grunt) {
       }
     },
     unzip: {
-      'temp/': 'arcgis-web-appbuilder-2.5.zip'
+      'temp/': 'arcgis-web-appbuilder-2.6.zip'
     },
     connect: {
       server: {

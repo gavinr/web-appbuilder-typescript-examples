@@ -24,7 +24,7 @@ interface Widget {
 
 @declare(BaseWidget)
 class Widget {
-  baseClass: 'demo-widget';
+  baseClass = 'demo-widget';
 
   sceneView: SceneView;
 
