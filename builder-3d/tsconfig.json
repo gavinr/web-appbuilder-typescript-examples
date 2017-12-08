@@ -1,0 +1,27 @@
+{
+  
+  "compilerOptions": {
+    "module": "amd",
+    "moduleResolution": "classic",
+    "noImplicitAny": false,
+    "jsx": "react",
+    "jsxFactory": "tsx",
+    "target": "es5",
+    "experimentalDecorators": true,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [ "arcgis-js-api", "dojo-typings", "es6-promise"],
+    "rootDir": "widgets",
+    "outDir": "dist/Widgets",
+    "noImplicitUseStrict":true,
+    "inlineSources": true,
+    "inlineSourceMap": true
+  },
+  
+  "include": [
+    "widgets/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
