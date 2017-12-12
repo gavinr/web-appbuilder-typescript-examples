@@ -8,8 +8,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-sass');
     // The following should be something like 'C:/webappbuilder/arcgis-web-appbuilder-2.6/WebAppBuilderForArcGIS/server/apps/9'
     var appDir = '[YOUR_PATH_TO]/WebAppBuilderForArcGIS/server/apps/[APP_ID]';
-    // The following should be something like 'C:/webappbuilder/arcgis-web-appbuilder-2.6/WebAppBuilderForArcGIS/client/stemapp3d'
-    var stemappDir = '[YOUR_PATH_TO]/WebAppBuilderForArcGIS/client/stemapp3d';
+    // The following should be something like 'C:/webappbuilder/arcgis-web-appbuilder-2.6/WebAppBuilderForArcGIS/client/stemapp'
+    var stemappDir = '[YOUR_PATH_TO]/WebAppBuilderForArcGIS/client/stemapp';
     grunt.initConfig({
         sync: {
             main: {
