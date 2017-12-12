@@ -23,7 +23,6 @@
     "grunt-ts": "^6.0.0-beta.16",
     "grunt-zip": "^0.17.1",
     "@types/arcgis-js-api": "^4.5.0",
-    "@types/es6-promise": "0.0.32",
     "typescript": "^2.6.2"
   },
   "dependencies": {}
