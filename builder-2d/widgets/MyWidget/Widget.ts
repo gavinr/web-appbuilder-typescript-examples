@@ -30,7 +30,6 @@ class Widget {
   map: EsriMap;
 
   postCreate(args: any) {
-    // not allowed in option strict this.inherited(arguments);
     let self: any = this;
     self.inherited(arguments);
     this.widgetWrapper.innerHTML = this.config.demoSetting;

@@ -10,10 +10,11 @@
     "experimentalDecorators": true,
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
-    "types": [ "arcgis-js-api", "dojo-typings", "es6-promise"],
+    "types": [ "arcgis-js-api", "dojo-typings"],
     "rootDir": "widgets",
     "outDir": "dist/Widgets",
     "noImplicitUseStrict":true,
+    "lib": ["dom", "es5", "scripthost", "es2015.promise"],
     "inlineSources": true,
     "inlineSourceMap": true
   },

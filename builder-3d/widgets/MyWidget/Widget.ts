@@ -29,8 +29,8 @@ class Widget {
   sceneView: SceneView;
 
   postCreate(args: any) {
-    // not allowed in option strict this.inherited(arguments);
-    BaseWidget.prototype.postCreate.call(this, args);
+    let self: any = this;
+    self.inherited(arguments);
     this.widgetWrapper.innerHTML = this.config.demoSetting;
     this.createLayer();
   };
