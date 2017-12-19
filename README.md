@@ -40,4 +40,5 @@ Run `grunt` and as you modify your files, the web app should be updated automati
 A few notes about the general ideas and principles that are used in both the `builder` and `developer` versions of this code
 
 - We are currently supporting [TypeScript version 2.6](https://blogs.msdn.microsoft.com/typescript/2017/10/31/announcing-typescript-2-6/).
-- The Declare Decorator is used to tell TypeScript how to translate our Widget class into a dojo/declare syntax that Web AppBuilder is looking for. [Decorators are currently experimental](https://www.typescriptlang.org/docs/handbook/decorators.html) (although widely used) so beware of that small risk. If TypeScript did take out decorators at some point, we would have to change how we're doing this. 
+- The Declare Decorator is used to tell TypeScript how to translate our Widget class into a dojo/declare syntax that Web AppBuilder is looking for. [Decorators are currently experimental](https://www.typescriptlang.org/docs/handbook/decorators.html) (although widely used) so beware of that small risk. If TypeScript did take out decorators at some point, we would have to change how we're doing this.
+- For more info, see this blog post: [Custom Web AppBuilder Widgets in TypeScript ](https://community.esri.com/people/GRehkemper-esristaff/blog/2017/12/13/custom-web-appbuilder-widgets-in-typescript)
