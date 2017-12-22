@@ -19,7 +19,8 @@ class Setting {
   baseClass = 'my-widget-setting';
 
   postCreate(args: any) {
-    //the config object is passed in
+    let self: any = this;
+    self.inherited(arguments);
     this.setConfig(this.config);
   };
 
