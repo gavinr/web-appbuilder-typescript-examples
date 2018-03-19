@@ -8,7 +8,7 @@ There are 2 types of project examples in this repository, one if you want to use
 
 ## Quick Start - `builder`
 
-Example using TypeScript and Grunt to copy files to your local Web AppBuilder Developer Edition so you can use your custom widgets in the builder interface. We have options for 2D Web AppBuilder apps (that use the ArcGIS API for Javascript v3.x) and 3D Web AppBuilder apps (that use the the ArcGIS API for JavaScript 4.x). This was used as a template the the [generator-esri-appbuilder-js](https://github.com/Esri/generator-esri-appbuilder-js) now outputs if you choose "TypeScript". [More info here](https://community.esri.com/people/GRehkemper-esristaff/blog/2018/03/15/web-appbuilder-widget-generator-v3-released-typescript).
+Example using TypeScript and Grunt to copy files to your local Web AppBuilder Developer Edition so you can use your custom widgets in the builder interface. We have options for 2D Web AppBuilder apps (that use the ArcGIS API for Javascript v3.x) and 3D Web AppBuilder apps (that use the the ArcGIS API for JavaScript 4.x). This is the template that the [generator-esri-appbuilder-js](https://github.com/Esri/generator-esri-appbuilder-js) now outputs if you choose "TypeScript". [More info here](https://community.esri.com/people/GRehkemper-esristaff/blog/2018/03/15/web-appbuilder-widget-generator-v3-released-typescript).
 
 1. Copy the files from the `/builder` folder to your GitHub repo.
 1. Update the file paths at the beginning (line ~10) of `Gruntfile.js` to point to your running Web AppBuilder instance.
