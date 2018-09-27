@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright ? 2014 Esri. All Rights Reserved.
+// Copyright © 2014 - 2018 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -57,27 +57,27 @@ Global functions:
 *******************************/
 /*global testLoad, ActiveXObject */
 var
-//    the URL of the ArcGIS API for JavaScript, you can change it to point to your own API.
-apiUrl = null,
+  //    the URL of the ArcGIS API for JavaScript, you can change it to point to your own API.
+  apiUrl = null,
 
-//weinreUrl: String
-//    weinre is a tool which can help debug the app on mobile devices.
-//    Please see: http://people.apache.org/~pmuellr/weinre/docs/latest/Home.html
-weinreUrl = '//launch.chn.esri.com:8081/target/target-script-min.js',
+  //weinreUrl: String
+  //    weinre is a tool which can help debug the app on mobile devices.
+  //    Please see: http://people.apache.org/~pmuellr/weinre/docs/latest/Home.html
+  weinreUrl = '//launch.chn.esri.com:8081/target/target-script-min.js',
 
-//debug: Boolean
-//    If it's debug mode, the app will load weinre file
-debug = false,
+  //debug: Boolean
+  //    If it's debug mode, the app will load weinre file
+  debug = false,
 
-path = null,
+  path = null,
 
-isXT = false,
+  isXT = false,
 
-allCookies,
+  allCookies,
 
-//This version number will be appended to URL to avoid cache.
-//The reason we do not use wabVersion is to avoid force user to change wabVersion when they are customizing app.
-deployVersion = '2.5';
+  //This version number will be appended to URL to avoid cache.
+  //The reason we do not use wabVersion is to avoid force user to change wabVersion when they are customizing app.
+  deployVersion = '2.9';
 
 // console.time('before map');
 
@@ -88,193 +88,193 @@ deployVersion = '2.5';
 /////////////////////////////////////
 
 (function(global){
-//init API URL
-var queryObject = getQueryObject();
-var apiVersion = '4.4';
-////////uncomment the following line when downloading the app
+  //init API URL
+  var queryObject = getQueryObject();
+  var apiVersion = '4.8';
+  ////////uncomment the following line when downloading the app
 
-apiUrl = 'https://js.arcgis.com/4.4';
+  apiUrl = 'https://js.arcgis.com/4.8';
 
-//////////////////////////////////////////////////////////////
-allCookies = getAllCookies();
-window.appInfo = {isRunInPortal: !isXT};
-if (!apiUrl) {
-  if (queryObject.apiurl3d) {
-    apiUrl = queryObject.apiurl3d;
-  } else if (isXT) {
-    apiUrl = 'https://js.arcgis.com/' + apiVersion;
-  } else {
-    var portalUrl = getPortalUrlFromLocation();
-    if (portalUrl.indexOf('arcgis.com') > -1) {
-      // if(portalUrl.indexOf('devext.arcgis.com') > -1){
-      //   apiUrl = '//js.arcgis.com/' + apiVersion;
-      // }else if(portalUrl.indexOf('qa.arcgis.com') > -1){
-      //   apiUrl = '//jsqa.arcgis.com/' + apiVersion;
-      // }else{
-      //   apiUrl = '//js.arcgis.com/' + apiVersion;
-      // }
+  //////////////////////////////////////////////////////////////
+  allCookies = getAllCookies();
+  window.appInfo = {isRunInPortal: !isXT};
+  if (!apiUrl) {
+    if (queryObject.apiurl3d) {
+      apiUrl = queryObject.apiurl3d;
+    } else if (isXT) {
       apiUrl = 'https://js.arcgis.com/' + apiVersion;
     } else {
-      apiUrl = portalUrl + 'jsapi/jsapi4/';
-    }
-  }
-}
-
-if (apiUrl.substr(apiUrl.length - 1, apiUrl.length) !== '/') {
-  apiUrl = apiUrl + '/';
-}
-
-path = getPath();
-
-function getAllCookies(){
-  var strAllCookie = document.cookie;
-  var cookies = {};
-  if (strAllCookie) {
-    var strCookies = strAllCookie.split(';');
-    for(var i = 0; i < strCookies.length; i++){
-      var splits = strCookies[i].split('=');
-      if(splits && splits.length > 1){
-        cookies[splits[0].replace(/^\s+|\s+$/gm, '')] = splits[1];
+      var portalUrl = getPortalUrlFromLocation();
+      if (portalUrl.indexOf('arcgis.com') > -1) {
+        if(portalUrl.indexOf('devext.arcgis.com') > -1){
+          apiUrl = '//jsdev.arcgis.com/' + apiVersion;
+        }else if(portalUrl.indexOf('qa.arcgis.com') > -1){
+          apiUrl = '//jsqa.arcgis.com/' + apiVersion;
+        }else{
+          apiUrl = '//js.arcgis.com/' + apiVersion;
+        }
+        // apiUrl = 'https://js.arcgis.com/' + apiVersion;
+      } else {
+        apiUrl = portalUrl + 'jsapi/jsapi4/';
       }
     }
   }
-  return cookies;
-}
 
-function getPortalUrlFromLocation(){
-  var portalUrl = getPortalServerFromLocation() +  getDeployContextFromLocation();
-  return portalUrl;
-}
-
-function getPortalServerFromLocation(){
-  var server = window.location.protocol + '//' + window.location.host;
-  return server;
-}
-
-function getDeployContextFromLocation (){
-  var keyIndex = window.location.href.indexOf("/home");
-  if(keyIndex < 0){
-    keyIndex = window.location.href.indexOf("/apps");
+  if (apiUrl.substr(apiUrl.length - 1, apiUrl.length) !== '/') {
+    apiUrl = apiUrl + '/';
   }
-  var context = window.location.href.substring(window.location.href.indexOf(
-    window.location.host) + window.location.host.length + 1, keyIndex);
-  if (context !== "/") {
-    context = "/" + context + "/";
-  }
-  return context;
-}
 
-function getPath() {
-  var fullPath, path;
+  path = getPath();
 
-  fullPath = window.location.pathname;
-  if (fullPath === '/' || fullPath.substr(fullPath.length - 1) === '/') {
-    path = fullPath;
-  }else{
-    var sections = fullPath.split('/');
-    var lastSection = sections.pop();
-    if (/\.html$/.test(lastSection) || /\.aspx$/.test(lastSection) ||
-       /\.jsp$/.test(lastSection) || /\.php$/.test(lastSection)) {
-      //index.html may be renamed to index.jsp, etc.
-      path = sections.join('/') + '/';
-    } else {
-      return false;
-    }
-  }
-  return path;
-}
-
-function getQueryObject(){
-  var query = window.location.search;
-  if (query.indexOf('?') > -1) {
-    query = query.substr(1);
-  }
-  var pairs = query.split('&');
-  var queryObject = {};
-  for(var i = 0; i < pairs.length; i++){
-    var splits = decodeURIComponent(pairs[i]).split('=');
-    queryObject[splits[0]] = splits[1];
-  }
-  return queryObject;
-}
-function _loadPolyfills(prePath, cb) {
-  prePath = prePath || "";
-  var ap = Array.prototype,
-    fp = Function.prototype,
-    sp = String.prototype,
-    loaded = 0,
-    completeCb = function() {
-      loaded++;
-      if (loaded === tests.length) {
-        cb();
+  function getAllCookies(){
+    var strAllCookie = document.cookie;
+    var cookies = {};
+    if (strAllCookie) {
+      var strCookies = strAllCookie.split(';');
+      for(var i = 0; i < strCookies.length; i++){
+        var splits = strCookies[i].split('=');
+        if(splits && splits.length > 1){
+          cookies[splits[0].replace(/^\s+|\s+$/gm, '')] = splits[1];
+        }
       }
-    },
-    tests = [{
-      test: window.console,
-      failure: prePath + "libs/polyfills/console.js",
-      callback: completeCb
-    }, {
-      test: ap.indexOf && ap.lastIndexOf && ap.forEach && ap.every && ap.some &&
-        ap.filter && ap.map && ap.reduce && ap.reduceRight,
-      failure: prePath + "libs/polyfills/array.generics.js",
-      callback: completeCb
-    }, {
-      test: fp.bind,
-      failure: prePath + "libs/polyfills/bind.js",
-      callback: completeCb
-    }, {
-      test: Date.now,
-      failure: prePath + "libs/polyfills/now.js",
-      callback: completeCb
-    }, {
-      test: sp.trim,
-      failure: prePath + "libs/polyfills/trim.js",
-      callback: completeCb
-    }, {
-      test: false,
-      failure: prePath + "libs/polyfills/FileSaver.js",
-      callback: completeCb
-    }, {
-      test: typeof Blob !== 'undefined',
-      failure: prePath + "libs/polyfills/FileSaver.ie9.js",
-      callback: completeCb
-    }];
-
-  for(var i = 0; i < tests.length; i++){
-    testLoad(tests[i]);
+    }
+    return cookies;
   }
-}
 
-function localeIsSame(locale1, locale2){
-  return locale1.split('-')[0] === locale2.split('-')[0];
-}
+  function getPortalUrlFromLocation(){
+    var portalUrl = getPortalServerFromLocation() +  getDeployContextFromLocation();
+    return portalUrl;
+  }
 
-function _setRTL(locale){
-  var rtlLocales = ["ar", "he"];
-  var dirNode = document.getElementsByTagName("html")[0];
-  var isRTLLocale = false;
-  for (var i = 0; i < rtlLocales.length; i++) {
-    if (localeIsSame(rtlLocales[i], locale)) {
-      isRTLLocale = true;
+  function getPortalServerFromLocation(){
+    var server = window.location.protocol + '//' + window.location.host;
+    return server;
+  }
+
+  function getDeployContextFromLocation (){
+    var keyIndex = window.location.href.indexOf("/home");
+    if(keyIndex < 0){
+      keyIndex = window.location.href.indexOf("/apps");
+    }
+    var context = window.location.href.substring(window.location.href.indexOf(
+      window.location.host) + window.location.host.length + 1, keyIndex);
+    if (context !== "/") {
+      context = "/" + context + "/";
+    }
+    return context;
+  }
+
+  function getPath() {
+    var fullPath, path;
+
+    fullPath = window.location.pathname;
+    if (fullPath === '/' || fullPath.substr(fullPath.length - 1) === '/') {
+      path = fullPath;
+    }else{
+      var sections = fullPath.split('/');
+      var lastSection = sections.pop();
+      if (/\.html$/.test(lastSection) || /\.aspx$/.test(lastSection) ||
+         /\.jsp$/.test(lastSection) || /\.php$/.test(lastSection)) {
+        //index.html may be renamed to index.jsp, etc.
+        path = sections.join('/') + '/';
+      } else {
+        return false;
+      }
+    }
+    return path;
+  }
+
+  function getQueryObject(){
+    var query = window.location.search;
+    if (query.indexOf('?') > -1) {
+      query = query.substr(1);
+    }
+    var pairs = query.split('&');
+    var queryObject = {};
+    for(var i = 0; i < pairs.length; i++){
+      var splits = decodeURIComponent(pairs[i]).split('=');
+      queryObject[splits[0]] = splits[1];
+    }
+    return queryObject;
+  }
+  function _loadPolyfills(prePath, cb) {
+    prePath = prePath || "";
+    var ap = Array.prototype,
+      fp = Function.prototype,
+      sp = String.prototype,
+      loaded = 0,
+      completeCb = function() {
+        loaded++;
+        if (loaded === tests.length) {
+          cb();
+        }
+      },
+      tests = [{
+        test: window.console,
+        failure: prePath + "libs/polyfills/console.js",
+        callback: completeCb
+      }, {
+        test: ap.indexOf && ap.lastIndexOf && ap.forEach && ap.every && ap.some &&
+          ap.filter && ap.map && ap.reduce && ap.reduceRight,
+        failure: prePath + "libs/polyfills/array.generics.js",
+        callback: completeCb
+      }, {
+        test: fp.bind,
+        failure: prePath + "libs/polyfills/bind.js",
+        callback: completeCb
+      }, {
+        test: Date.now,
+        failure: prePath + "libs/polyfills/now.js",
+        callback: completeCb
+      }, {
+        test: sp.trim,
+        failure: prePath + "libs/polyfills/trim.js",
+        callback: completeCb
+      }, {
+        test: false,
+        failure: prePath + "libs/polyfills/FileSaver.js",
+        callback: completeCb
+      }, {
+        test: typeof Blob !== 'undefined',
+        failure: prePath + "libs/polyfills/FileSaver.ie9.js",
+        callback: completeCb
+      }];
+
+    for(var i = 0; i < tests.length; i++){
+      testLoad(tests[i]);
     }
   }
 
-  if (isRTLLocale) {
-    dirNode.setAttribute("dir", "rtl");
-    dirNode.className += " esriRtl jimu-rtl";
-    dirNode.className += " " + locale + " " +
-      (locale.indexOf("-") !== -1 ? locale.split("-")[0] : "");
-  }else {
-    dirNode.setAttribute("dir", "ltr");
-    dirNode.className += " esriLtr jimu-ltr";
-    dirNode.className += " " + locale + " " +
-      (locale.indexOf("-") !== -1 ? locale.split("-")[0] : "");
+  function localeIsSame(locale1, locale2){
+    return locale1.split('-')[0] === locale2.split('-')[0];
   }
 
-  window.isRTL = isRTLLocale;
-}
+  function _setRTL(locale){
+    var rtlLocales = ["ar", "he"];
+    var dirNode = document.getElementsByTagName("html")[0];
+    var isRTLLocale = false;
+    for (var i = 0; i < rtlLocales.length; i++) {
+      if (localeIsSame(rtlLocales[i], locale)) {
+        isRTLLocale = true;
+      }
+    }
 
-global._loadPolyfills = _loadPolyfills;
-global.queryObject = queryObject;
-global._setRTL = _setRTL;
+    if (isRTLLocale) {
+      dirNode.setAttribute("dir", "rtl");
+      dirNode.className += " esriRtl jimu-rtl";
+      dirNode.className += " " + locale + " " +
+        (locale.indexOf("-") !== -1 ? locale.split("-")[0] : "");
+    }else {
+      dirNode.setAttribute("dir", "ltr");
+      dirNode.className += " esriLtr jimu-ltr";
+      dirNode.className += " " + locale + " " +
+        (locale.indexOf("-") !== -1 ? locale.split("-")[0] : "");
+    }
+
+    window.isRTL = isRTLLocale;
+  }
+
+  global._loadPolyfills = _loadPolyfills;
+  global.queryObject = queryObject;
+  global._setRTL = _setRTL;
 })(window);

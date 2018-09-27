@@ -4,58 +4,61 @@
 declare var BaseWidget: any; // there is no ts definition of BaseWidget (yet!)
 
 // DeclareDecorator - to enable us to export this module with Dojo's "declare()" syntax so WAB can load it:
-import declare from "./support/declareDecorator";
+import declare from './support/declareDecorator';
 
 // Esri imports:
-import FeatureLayer = require('esri/layers/FeatureLayer');
-import Query = require('esri/tasks/support/Query');
-import SceneView = require('esri/views/SceneView');
+import FeatureLayer from 'esri/layers/FeatureLayer';
+import FeatureSet from 'esri/tasks/support/FeatureSet';
+import Query from 'esri/tasks/support/Query';
+import SceneView from 'esri/views/SceneView';
 
 // Dojo imports:
 // import * as on from 'dojo/on';
 
-interface Config {
-  demoSetting: string
+interface IConfig {
+  demoSetting: string;
 }
-interface Widget {
-  widgetWrapper?: Element
-  config?: Config
+interface IWidget {
+  baseClass: string;
+  config?: IConfig;
 }
 
 @declare(BaseWidget)
-class Widget {
-  baseClass = 'demo-widget';
+class Widget implements IWidget {
+  public baseClass: string = 'my-widget';
+  public config: IConfig;
 
-  sceneView: SceneView;
+  private sceneView: SceneView;
+  private widgetWrapper: HTMLElement;
 
-  postCreate(args: any) {
-    // not allowed in option strict this.inherited(arguments);
-    BaseWidget.prototype.postCreate.call(this, args);
+  private postCreate(args: any) {
+    const self: any = this;
+    self.inherited(arguments);
     this.widgetWrapper.innerHTML = this.config.demoSetting;
     this.createLayer();
-  };
+  }
 
   /**
    * Example of adding a layer to the map, and querying the features.
    */
-  createLayer() {
+  private createLayer() {
     const layer = new FeatureLayer({
-      url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Recreation/FeatureServer/0'
+      url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Recreation/FeatureServer/0',
     });
-    layer.then((evt) => {
+    layer.when(() => {
       this.queryLayer(layer);
     });
     this.sceneView.map.layers.add(layer);
-  };
+  }
 
-  queryLayer(layer: FeatureLayer) {
+  private queryLayer(layer: FeatureLayer) {
     const query = new Query();
     query.where = 'facility = 7';
     query.outFields = ['*'];
-    layer.queryFeatures(query).then((results) => {
+    layer.queryFeatures(query).then((results: FeatureSet) => {
       console.log('query results:', results.features);
     });
   }
-};
+}
 
 export = Widget;

@@ -70,14 +70,14 @@ module.exports = function(grunt) {
     },
     clean: {
       'dist': {
-        'src': 'dist/**'
+        'src': 'dist/*'
       },
       temp: {
-        'src': 'temp/**'
+        'src': 'temp/*'
       }
     },
     unzip: {
-      'temp/': 'arcgis-web-appbuilder-2.6.zip'
+      'temp/': 'arcgis-web-appbuilder-2.9.zip'
     },
     connect: {
       server: {
