@@ -72,7 +72,7 @@ module.exports = function (grunt) {
                 'expand': true
             }
         },
-        clean: { 'dist': { 'src': 'dist/**' } },
+        clean: { 'dist': { 'src': 'dist/*' } },
         sass: {
             dist: {
                 options: { sourceMap: true },
