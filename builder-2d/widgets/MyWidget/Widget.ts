@@ -1,4 +1,4 @@
-// jIMU (WAB) imports:
+// JIMU (WAB) imports:
 
 /// <amd-dependency path="jimu/BaseWidget" name="BaseWidget" />
 declare var BaseWidget: any; // there is no ts definition of BaseWidget (yet!)
@@ -6,7 +6,7 @@ declare var BaseWidget: any; // there is no ts definition of BaseWidget (yet!)
 // declareDecorator - to enable us to export this module with Dojo's "declare()" syntax so WAB can load it:
 import declare from './support/declareDecorator';
 
-// esri imports:
+// Esri imports:
 import FeatureLayer from 'esri/layers/FeatureLayer';
 import EsriMap from 'esri/map';
 import FeatureSet from 'esri/tasks/FeatureSet';
