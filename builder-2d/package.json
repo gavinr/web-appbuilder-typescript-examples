@@ -2,22 +2,20 @@
   "name": "ts-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Gavin Rehkemper (https://gavinr.com)",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.1.0",
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^2.0.0",
-    "grunt-sync": "^0.6.2",
-    "grunt-ts": "^6.0.0-beta.16",
-    "dojo-typings": "^1.11.7",
-    "@types/arcgis-js-api": "^3.22.0",
-    "typescript": "^2.6.2"
+    "grunt-sync": "^0.8.0",
+    "grunt-ts": "^6.0.0-beta.21",
+    "dojo-typings": "^1.11.9",
+    "@types/arcgis-js-api": "^3.25.0",
+    "typescript": "^3.1.1"
   }
 }

@@ -1,61 +1,66 @@
-// JIMU (WAB) imports:
+// jIMU (WAB) imports:
 
 /// <amd-dependency path="jimu/BaseWidget" name="BaseWidget" />
 declare var BaseWidget: any; // there is no ts definition of BaseWidget (yet!)
 
-// DeclareDecorator - to enable us to export this module with Dojo's "declare()" syntax so WAB can load it:
-import declare from "./support/declareDecorator";
+// declareDecorator - to enable us to export this module with Dojo's "declare()" syntax so WAB can load it:
+import declare from './support/declareDecorator';
 
-// Esri imports:
-import esri = require('esri');
-import FeatureLayer = require('esri/layers/FeatureLayer');
-import Query = require('esri/tasks/query');
-import EsriMap = require('esri/map');
+// esri imports:
+import FeatureLayer from 'esri/layers/FeatureLayer';
+import EsriMap from 'esri/map';
+import FeatureSet from 'esri/tasks/FeatureSet';
+import Query from 'esri/tasks/query';
 
-// Dojo imports:
+// dojo imports:
 import * as on from 'dojo/on';
 
-interface Config {
-  demoSetting: string
+interface IConfig {
+  demoSetting: string;
 }
-interface Widget {
-  widgetWrapper?: Element
-  config?: Config
+interface IWidget {
+  baseClass: string;
+  config?: IConfig;
 }
 
 @declare(BaseWidget)
-class Widget {
-  baseClass = 'my-widget';
+class Widget implements IWidget {
+  public baseClass: string = 'my-widget';
+  public config: IConfig;
 
-  map: EsriMap;
+  private map: EsriMap;
+  private widgetWrapper: HTMLElement;
 
-  postCreate(args: any) {
-    let self: any = this;
+  private postCreate(args: any): void {
+    const self: any = this;
     self.inherited(arguments);
+
     this.widgetWrapper.innerHTML = this.config.demoSetting;
     this.createLayer();
-  };
+  }
 
   /**
    * Example of adding a layer to the map, and querying the features.
    */
-  createLayer() {
-    const layer = new FeatureLayer('https://sampleserver6.arcgisonline.com/arcgis/rest/services/Recreation/FeatureServer/0');
+  private createLayer(): void {
+    const layer: FeatureLayer = new FeatureLayer(
+      'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Recreation/FeatureServer/0',
+    );
     on.once(this.map, 'update-end', (evt) => {
       console.log('evt', evt);
       this.queryLayer(layer);
     });
     this.map.addLayers([layer]);
-  };
+  }
 
-  queryLayer(layer: FeatureLayer) {
-    const query = new Query();
+  private queryLayer(layer: FeatureLayer): void {
+    const query: Query = new Query();
     query.where = 'facility = 8';
     query.outFields = ['*'];
-    layer.queryFeatures(query).then((results) => {
+    layer.queryFeatures(query).then((results: FeatureSet) => {
       console.log('query results:', results.features);
     });
   }
-};
+}
 
 export = Widget;
