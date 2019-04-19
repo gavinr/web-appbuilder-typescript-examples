@@ -26,7 +26,7 @@ If you're not using the builder interface, this version extracts Web AppBuilder,
 1. Install Node.js.
 1. `npm install -g grunt-cli` (see https://gruntjs.com/getting-started)
 1. Clone or download this repo.
-1. Download the Web AppBuilder Developer Edition zip file from [here](https://developers.arcgis.com/web-appbuilder/), and save the zip file named `arcgis-web-appbuilder-2.11.zip` into the `developer/` folder, right at the same level as the `Gruntfile.js`.
+1. Download the Web AppBuilder Developer Edition zip file from [here](https://developers.arcgis.com/web-appbuilder/), and save the zip file named `arcgis-web-appbuilder-2.12.zip` into the `developer/` folder, right at the same level as the `Gruntfile.js`.
 1. In the terminal, browse to the `developer` folder
 1. `npm install`
 1. `grunt init`
