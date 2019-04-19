@@ -12,12 +12,12 @@ import FeatureSet from 'esri/tasks/support/FeatureSet';
 import Query from 'esri/tasks/support/Query';
 import SceneView from 'esri/views/SceneView';
 
-// Dojo imports:
-// import * as on from 'dojo/on';
+// dojo imports:
+// import on from 'dojo/on';
 
-interface IConfig {
-  demoSetting: string;
-}
+import IConfig from './config';
+import Subwidget from './widgets/Subwidget';
+
 interface IWidget {
   baseClass: string;
   config?: IConfig;
@@ -30,12 +30,20 @@ class Widget implements IWidget {
 
   private sceneView: SceneView;
   private widgetWrapper: HTMLElement;
+  private subwidget: Subwidget;
 
-  private postCreate(args: any) {
+  private postCreate(args: any): void {
     const self: any = this;
     self.inherited(arguments);
+
     this.widgetWrapper.innerHTML = this.config.demoSetting;
     this.createLayer();
+
+    // create a new instance of "Subwidget" wich is just a plain old dojo Widget.
+    this.subwidget = new Subwidget({
+      text: 'This is a subwidget.'
+    });
+    this.subwidget.placeAt(this.widgetWrapper, 'last');
   }
 
   /**

@@ -13,17 +13,17 @@
   "homepage": "https://github.com/gavinr/web-appbuilder-typescript-examples#readme",
   "devDependencies": {
     "dojo-typings": "^1.11.9",
-    "grunt": "^1.0.3",
+    "grunt": "^1.0.4",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-connect": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-text-replace": "^0.4.0",
     "grunt-sync": "^0.8.0",
-    "grunt-ts": "^6.0.0-beta.21",
-    "grunt-zip": "^0.18.1",
-    "@types/arcgis-js-api": "^4.8.1",
-    "typescript": "^3.1.1"
+    "grunt-ts": "^6.0.0-beta.22",
+    "grunt-zip": "^0.18.2",
+    "@types/arcgis-js-api": "^4.11.0",
+    "typescript": "^3.4.4"
   },
   "dependencies": {}
 }

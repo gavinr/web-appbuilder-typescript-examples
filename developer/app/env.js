@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright © 2014 - 2018 Esri. All Rights Reserved.
+// Copyright © Esri. All Rights Reserved.
 //
 // Licensed under the Apache License Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -77,7 +77,7 @@ var
 
   //This version number will be appended to URL to avoid cache.
   //The reason we do not use wabVersion is to avoid force user to change wabVersion when they are customizing app.
-  deployVersion = '2.9';
+  deployVersion = '2.12';
 
 // console.time('before map');
 
@@ -90,18 +90,24 @@ var
 (function(global){
   //init API URL
   var queryObject = getQueryObject();
-  var apiVersion = '4.8';
+  var apiVersion = '4.11';
   ////////uncomment the following line when downloading the app
 
-  apiUrl = 'https://js.arcgis.com/4.8';
+  apiUrl = 'https://js.arcgis.com/4.11';
 
   //////////////////////////////////////////////////////////////
   allCookies = getAllCookies();
   window.appInfo = {isRunInPortal: !isXT};
+
+  if (queryObject.apiurl3d) {
+    if(!checkApiUrl(queryObject.apiurl3d)){
+      console.error('?apiurl must point to an ULR that is in the app or in esri.com/arcgis.com domain.');
+      return;
+    }
+    apiUrl = queryObject.apiurl3d;
+  }
   if (!apiUrl) {
-    if (queryObject.apiurl3d) {
-      apiUrl = queryObject.apiurl3d;
-    } else if (isXT) {
+    if (isXT) {
       apiUrl = 'https://js.arcgis.com/' + apiVersion;
     } else {
       var portalUrl = getPortalUrlFromLocation();
@@ -141,6 +147,14 @@ var
     return cookies;
   }
 
+  function checkApiUrl(url){
+    if(/^\/\//.test(url) || /^https?:\/\//.test(url)){
+      return /(?:[\w\-\_]+\.)+(?:esri|arcgis)\.com/.test(url); //api url must be in esri.com or arcgis.com
+    }else{
+      return true;
+    }
+  }
+
   function getPortalUrlFromLocation(){
     var portalUrl = getPortalServerFromLocation() +  getDeployContextFromLocation();
     return portalUrl;
@@ -152,9 +166,9 @@ var
   }
 
   function getDeployContextFromLocation (){
-    var keyIndex = window.location.href.indexOf("/home");
+    var keyIndex = window.location.href.indexOf("/home/");
     if(keyIndex < 0){
-      keyIndex = window.location.href.indexOf("/apps");
+      keyIndex = window.location.href.indexOf("/apps/");
     }
     var context = window.location.href.substring(window.location.href.indexOf(
       window.location.host) + window.location.host.length + 1, keyIndex);
