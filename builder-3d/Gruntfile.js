@@ -1,3 +1,5 @@
+const sass = require('node-sass');
+
 module.exports = function (grunt) {
     'use strict';
     grunt.loadNpmTasks('grunt-sync');
@@ -50,7 +52,8 @@ module.exports = function (grunt) {
                 ],
                 options: {
                     spawn: false,
-                    atBegin: true
+                    atBegin: true,
+                    livereload: true
                 }
             }
         },
@@ -75,7 +78,10 @@ module.exports = function (grunt) {
         clean: { 'dist': { 'src': 'dist/*' } },
         sass: {
             dist: {
-                options: { sourceMap: true },
+                options: { 
+                    implementation: sass,
+                    sourceMap: true 
+                },
                 files: [{
                         expand: true,
                         src: ['widgets/**/*.scss'],

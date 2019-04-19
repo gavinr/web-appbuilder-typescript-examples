@@ -4,19 +4,22 @@
 declare var BaseWidgetSetting: any; // there is no ts definition of BaseWidgetSetting (yet!)
 
 // DeclareDecorator - to enable us to export this module with Dojo's "declare()" syntax so WAB can load it:
-import declare from "../support/declareDecorator";
+import declare from '../support/declareDecorator';
 
-interface Config {
-  demoSetting: string
-}
-interface Setting {
-  textNode?: HTMLInputElement
-  config?: Config
+import IConfig from '../config';
+// import EsriMap from 'esri/map';
+
+interface ISetting {
+  config?: IConfig;
 }
 
 @declare(BaseWidgetSetting)
-class Setting {
+class Setting implements ISetting {
   baseClass = 'my-widget-setting';
+  public config: IConfig;
+
+  // all inputs:
+  private textNode: HTMLInputElement;
 
   postCreate(args: any) {
     let self: any = this;
@@ -24,12 +27,12 @@ class Setting {
     this.setConfig(this.config);
   };
 
-  setConfig(config: Config) {
+  setConfig(config: IConfig) {
     this.textNode.value = config.demoSetting;
   };
 
   getConfig() {
-    //WAB will get config object through this method
+    // WAB will get config object through this method
     return {
       demoSetting: this.textNode.value
     };
