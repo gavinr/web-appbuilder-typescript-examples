@@ -15,9 +15,8 @@ import Query from 'esri/tasks/query';
 // dojo imports:
 import * as on from 'dojo/on';
 
-interface IConfig {
-  demoSetting: string;
-}
+import IConfig from './config';
+
 interface IWidget {
   baseClass: string;
   config?: IConfig;

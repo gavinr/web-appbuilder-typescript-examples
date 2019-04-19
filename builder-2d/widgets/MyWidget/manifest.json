@@ -5,11 +5,11 @@
   "3D": false,
   "platform": "HTML",
   "version": "1.0",
-  "wabVersion": "2.7",
+  "wabVersion": "2.12",
   "author": "",
   "description": "A custom Web AppBuilder widget.",
   "copyright": "",
-  "license": "ISC",
+  "license": "",
   "properties": {
     "inPanel": true,
     "hasLocale": true,
