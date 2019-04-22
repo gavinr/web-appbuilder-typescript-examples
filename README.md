@@ -1,4 +1,4 @@
-# web-appbuilder-typescript-examples
+# Web AppBuilder TypeScript Examples
 Featuring examples of using TypeScript with Web AppBuilder.
 
 ## Examples
