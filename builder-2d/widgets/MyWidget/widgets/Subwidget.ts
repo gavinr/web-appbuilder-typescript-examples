@@ -9,11 +9,11 @@ import _WidgetsInTemplateMixin from 'dijit/_WidgetsInTemplateMixin';
 // This line tells Typescript that our Subwidget extends from WidgetBase,
 // so when we call built-in properties or functions (like .placeAt()), 
 // Typescript will not error:
-interface Subwidget extends WidgetBase {};
+interface Subwidget extends WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin { }
 
 @declare(WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin)
 class Subwidget {
-  private templateString: string = template;
+  public templateString: string = template;
 
   baseClass: string = 'subwidget';
 
