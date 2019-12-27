@@ -1,5 +1,5 @@
 # Web AppBuilder TypeScript Examples
-Featuring examples of using TypeScript with [ArcGIS Web AppBuilder](https://developers.arcgis.com/web-appbuilder/).
+Featuring examples of using TypeScript with [Web AppBuilder for ArcGIS](https://developers.arcgis.com/web-appbuilder/).
 
 ## Examples
 
