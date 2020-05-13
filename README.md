@@ -26,19 +26,19 @@ If you're not using the builder interface, this version extracts Web AppBuilder,
 1. Install Node.js.
 1. `npm install -g grunt-cli` (see https://gruntjs.com/getting-started)
 1. Clone or download this repo.
-1. Download the Web AppBuilder Developer Edition zip file from [here](https://developers.arcgis.com/web-appbuilder/), and save the zip file named `arcgis-web-appbuilder-2.15.zip` into the `developer/` folder, right at the same level as the `Gruntfile.js`.
+1. Download the Web AppBuilder Developer Edition zip file from [here](https://developers.arcgis.com/web-appbuilder/), and save the zip file named `arcgis-web-appbuilder-2.16.zip` into the `developer/` folder, right at the same level as the `Gruntfile.js`.
 1. In the terminal, browse to the `developer` folder
 1. `npm install`
 1. `grunt init`
 
 #### Development:
 
-Run `grunt` and as you modify your files, the web app should be updated automatically.
+Run `grunt` and as you modify your files, the web app (in the `dist` folder - serve via a web server like IIS or use [serve](https://www.npmjs.com/package/serve)) should be updated automatically.
 
 ## Documentation
 
 A few notes about the general ideas and principles that are used in both the `builder` and `developer` versions of this code
 
-- We are currently supporting [TypeScript version 3.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html).
+- We are currently supporting [TypeScript version 3.9](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html).
 - The Declare Decorator is used to tell TypeScript how to translate our Widget class into a dojo/declare syntax that Web AppBuilder is looking for. [Decorators are currently experimental](https://www.typescriptlang.org/docs/handbook/decorators.html) (although widely used) so beware of that small risk. If TypeScript did take out decorators at some point, we would have to change how we're doing this.
 - For more info, see this blog post: [Custom Web AppBuilder Widgets in TypeScript ](https://community.esri.com/people/GRehkemper-esristaff/blog/2017/12/13/custom-web-appbuilder-widgets-in-typescript)
