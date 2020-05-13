@@ -12,18 +12,18 @@
   "license": "ISC",
   "homepage": "https://github.com/gavinr/web-appbuilder-typescript-examples#readme",
   "devDependencies": {
-    "dojo-typings": "^1.11.9",
-    "grunt": "^1.0.4",
+    "dojo-typings": "^1.11.10",
+    "grunt": "^1.1.0",
     "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-connect": "^2.0.0",
+    "grunt-contrib-connect": "^2.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-text-replace": "^0.4.0",
-    "grunt-sync": "^0.8.0",
+    "grunt-sync": "^0.8.2",
     "grunt-ts": "^6.0.0-beta.22",
     "grunt-zip": "^0.18.2",
-    "@types/arcgis-js-api": "^4.11.0",
-    "typescript": "^3.4.4"
+    "@types/arcgis-js-api": "^4.15.0",
+    "typescript": "^3.9.2"
   },
   "dependencies": {}
 }
